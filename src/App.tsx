@@ -10,117 +10,42 @@ import {
   Menu,
   X,
 } from "lucide-react";
-
-type Skill = {
-  name: string;
-  level: number;
-  category: string;
-};
-
-type Achievement = {
-  product: string;
-  points: string[];
-};
-
-type Experience = {
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-  achievements: Achievement[];
-};
-
-type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  liveUrl?: string;
-  githubUrl?: string;
-};
-
-const developer = {
-  name: "Akinola Abiodun E.",
-  description:
-    "Backend-focused web developer with hands-on experience building and maintaining production services in Go and TypeScript. Strong in API design, system architecture, and debugging complex business logic. Growing expertise in AWS and cloud-native deployment, with a consistent focus on clarity, maintainability, and measurable impact.",
-  github: "https://github.com/akinolaemmanuel49",
-  linkedin: "https://www.linkedin.com/in/akinola-emmanuel/",
-  email: "akinolaemmanuel49@gmail.com",
-};
-
-const tagline =
-  "Backend-first Full-Stack Developer building clean, scalable systems for real-world use.";
-
-const skills: Skill[] = [
-  { name: "React", level: 90, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Language" },
-  { name: "Node.js", level: 80, category: "Backend" },
-  { name: "Python", level: 75, category: "Language" },
-  { name: "Golang", level: 85, category: "Language" },
-  { name: "AWS", level: 65, category: "Cloud" },
-];
-
-const experiences: Experience[] = [
-  {
-    title: "Full Stack Web Developer",
-    company: "ReWrite Agency",
-    period: "February, 2025 - January, 2026",
-    description:
-      "Worked across multiple products, building scalable web applications, implementing features, fixing bugs, and optimizing backend and frontend performance.",
-    achievements: [
-      {
-        product: "ZirroHQ",
-        points: [
-          "Developed and maintained a SaaS platform to streamline business processes, from retail inventory management to client-facing storefronts.",
-          "Implemented features, fixed bugs, and optimized backend performance with a focus on concurrency in Go, improving responsiveness and efficiency.",
-          "Worked with MongoDB, Go (Fiber) backend, and React + TypeScript frontend for full-stack development.",
-        ],
-      },
-      {
-        product: "Weddn HQ",
-        points: [
-          "Enhanced the LoveWall with video status functionality using Cloudflare Streams, increasing user engagement.",
-          "Optimized back-office query performance, reducing processing time from 3–8 minutes to 10–50 seconds using pre-calculated documents.",
-          "Maintained full-stack development using MongoDB, Go (Fiber), and React + TypeScript.",
-        ],
-      },
-      {
-        product: "Unboxd HQ",
-        points: [
-          "Focused on bug fixing and optimizing image rendering workflows to improve frontend performance and user experience.",
-          "Ensured platform stability and smooth delivery of media content.",
-          "Worked with MongoDB, Go (Fiber) backend, and React + TypeScript frontend.",
-        ],
-      },
-    ],
-  },
-];
-
-const projects: Project[] = [
-  {
-    title: "Ọjà – Multi-Tenant E-Commerce Platform",
-    description:
-      "A full-stack showcase of multi-tenant architecture: separate tenant workspaces with isolated data, custom subdomains, visual storefront designer, session-based auth (HTTP-only cookies with revocation), group/role permissions, and product/variant management. Built using React for the frontend and FastAPI for the backend.",
-    tech: [
-      "TypeScript",
-      "React",
-      "Tailwind CSS",
-      "FastAPI",
-      "Python",
-      "PostgreSQL",
-      "HTTP-only Sessions",
-      "Multi-Tenancy",
-    ],
-    image:
-      "https://res.cloudinary.com/dikkedkzf/image/upload/v1771089909/Screenshot_61_q8mwz2.png",
-    githubUrl: "https://github.com/akinolaemmanuel49/oja",
-  },
-];
+import {
+  developer,
+  experiences,
+  projects,
+  skills,
+  tagline,
+} from "./shared/data";
+import { Footer } from "./components/Footer";
+import { ThemeButton } from "./components/ThemeButton";
 
 function App() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") return saved;
+
+    // system preference fallback
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
+
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const sectionsRef = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Stars data — generated once
   const stars = useMemo(() => {
@@ -190,9 +115,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-white">
+      {/* Theme button positioned in top-right corner */}
+      <div className="fixed top-20 right-4 z-50">
+        <ThemeButton theme={theme} setTheme={setTheme} />
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+      <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b bg-white/80 dark:bg-slate-900/80 border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex justify-between items-center">
             <button
@@ -205,10 +135,10 @@ function App() {
 
             <button
               onClick={() => scrollToSection("hero")}
-              className={`md:hidden flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors ${
+              className={`md:hidden flex items-center gap-2 transition-colors ${
                 activeSection === "hero"
                   ? "text-cyan-400"
-                  : "text-gray-400 hover:text-white"
+                  : "text-gray-400 hover:text-slate-900 dark:hover:text-white"
               }`}
               aria-label="Go to home section"
             >
@@ -227,7 +157,7 @@ function App() {
                   className={`capitalize transition-colors ${
                     activeSection === section
                       ? "text-cyan-400"
-                      : "text-gray-400 hover:text-white"
+                      : "text-gray-400 hover:text-slate-900 dark:hover:text-white"
                   }`}
                   aria-label={`Go to ${section} section`}
                   aria-current={activeSection === section ? "page" : undefined}
@@ -238,7 +168,7 @@ function App() {
             </div>
 
             <button
-              className="md:hidden text-gray-400 hover:text-white transition-colors"
+              className="md:hidden text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
@@ -260,8 +190,8 @@ function App() {
                     onClick={() => scrollToSection(section)}
                     className={`capitalize text-left py-2 px-4 rounded-lg transition-colors ${
                       activeSection === section
-                        ? "text-cyan-400 bg-slate-800"
-                        : "text-gray-400 hover:text-white hover:bg-slate-800/50"
+                        ? "text-cyan-400 bg-slate-800 dark:bg-slate-800"
+                        : "text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50"
                     }`}
                     aria-label={`Go to ${section} section`}
                     aria-current={
@@ -283,9 +213,9 @@ function App() {
         ref={(el) => {
           sectionsRef.current["hero"] = el;
         }}
-        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-16"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden bg-linear-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-16"
       >
-        {/* Stars background */}
+        {/* Stars background - now visible in both modes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Large stars */}
           <div className="absolute inset-0">
@@ -318,8 +248,7 @@ function App() {
                   height: `${star.size}px`,
                   top: `${star.top}%`,
                   left: `${star.left}%`,
-                  background:
-                    "radial-gradient(circle, rgba(34,211,238,0.9) 0%, rgba(59,130,246,0.6) 50%, transparent 70%)",
+                  background: `radial-gradient(circle, rgba(34,211,238,0.9) 0%, rgba(59,130,246,0.6) 50%, transparent 70%)`,
                   animationDelay: `${star.delay}s`,
                   animationDuration: `${star.duration}s`,
                   opacity: star.opacity,
@@ -351,7 +280,7 @@ function App() {
             ))}
           </div>
 
-          {/* Shooting stars */}
+          {/* Shooting stars - adjusted for light mode visibility */}
           <div className="absolute inset-0">
             {stars.shooting.map((star) => (
               <div
@@ -365,6 +294,8 @@ function App() {
                   animationDelay: `${star.delay}s`,
                   animationDuration: `${star.duration}s`,
                   opacity: 0.7,
+                  // Add a subtle white glow in light mode
+                  filter: "drop-shadow(0 0 4px rgba(34, 211, 238, 0.8))",
                 }}
               />
             ))}
@@ -377,13 +308,13 @@ function App() {
             {developer.name}
           </h1>
           <p
-            className="max-w-4xl mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 sm:mb-8 animate-slide-up"
+            className="max-w-4xl mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-700 dark:text-gray-300 mb-6 sm:mb-8 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
             {developer.description}
           </p>
           <p
-            className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-12 animate-slide-up"
+            className="text-base sm:text-lg text-slate-500 dark:text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-12 animate-slide-up"
             style={{ animationDelay: "0.4s" }}
           >
             {tagline}
@@ -396,7 +327,7 @@ function App() {
               href={developer.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-slate-800/80 hover:bg-cyan-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-cyan-500/30"
+              className="p-3 bg-white/80 dark:bg-slate-800/80 hover:bg-cyan-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 text-slate-800 dark:text-white"
               aria-label="GitHub profile"
             >
               <Github className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -405,14 +336,14 @@ function App() {
               href={developer.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-slate-800/80 hover:bg-blue-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-blue-500/30"
+              className="p-3 bg-white/80 dark:bg-slate-800/80 hover:bg-blue-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-blue-500/30 text-slate-800 dark:text-white"
               aria-label="LinkedIn profile"
             >
               <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a
               href={`mailto:${developer.email}`}
-              className="p-3 bg-slate-800/80 hover:bg-teal-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-teal-500/30"
+              className="p-3 bg-white/80 dark:bg-slate-800/80 hover:bg-teal-500 transition-all hover:scale-110 duration-300 backdrop-blur-sm rounded-lg hover:shadow-lg hover:shadow-teal-500/30 text-slate-800 dark:text-white"
               aria-label="Send email"
             >
               <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -450,7 +381,7 @@ function App() {
             {skills.map((skill, index) => (
               <div
                 key={skill.name}
-                className="group bg-slate-800/50 backdrop-blur-sm p-4 sm:p-6 border border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02]"
+                className="group bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm p-4 sm:p-6 border border-slate-200 dark:border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02]"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
@@ -461,7 +392,7 @@ function App() {
                     {skill.category}
                   </span>
                 </div>
-                <div className="relative h-2 sm:h-3 bg-slate-700 overflow-hidden">
+                <div className="relative h-2 sm:h-3 bg-slate-200 dark:bg-slate-700 overflow-hidden">
                   <div
                     className="absolute top-0 left-0 h-full bg-linear-to-r from-cyan-400 to-blue-500 transition-all duration-1000 ease-out"
                     style={{
@@ -475,7 +406,7 @@ function App() {
                     aria-label={`${skill.name} proficiency: ${skill.level}%`}
                   />
                 </div>
-                <div className="mt-2 text-right text-xs sm:text-sm text-gray-400">
+                <div className="mt-2 text-right text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   {skill.level}%
                 </div>
               </div>
@@ -490,7 +421,7 @@ function App() {
         ref={(el) => {
           sectionsRef.current.experience = el;
         }}
-        className="min-h-screen flex items-center py-16 sm:py-20 px-4 sm:px-6 bg-slate-800/30"
+        className="min-h-screen flex items-center py-16 sm:py-20 px-4 sm:px-6 bg-slate-100/50 dark:bg-slate-800/30"
       >
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex items-center gap-4 mb-8 sm:mb-12">
@@ -506,7 +437,7 @@ function App() {
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className="group relative bg-slate-800/50 backdrop-blur-sm p-6 sm:p-8 border border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:translate-x-1 sm:hover:translate-x-2"
+                className="group relative bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm p-6 sm:p-8 border border-slate-200 dark:border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:translate-x-1 sm:hover:translate-x-2"
               >
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-linear-to-b from-cyan-400 to-blue-500 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-4">
@@ -514,11 +445,11 @@ function App() {
                     <h3 className="text-xl sm:text-2xl font-bold text-cyan-400">
                       {exp.title}
                     </h3>
-                    <p className="text-base sm:text-lg text-gray-300">
+                    <p className="text-base sm:text-lg text-slate-700 dark:text-gray-300">
                       {exp.company}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
                     <Briefcase
                       className="w-4 h-4 sm:w-5 sm:h-5"
                       aria-hidden="true"
@@ -526,21 +457,21 @@ function App() {
                     <span className="text-sm sm:text-base">{exp.period}</span>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-6 text-sm sm:text-base">
+                <p className="text-slate-700 dark:text-gray-300 mb-6 text-sm sm:text-base">
                   {exp.description}
                 </p>
 
                 <div className="space-y-6">
                   {exp.achievements.map((ach, i) => (
                     <div key={i} className="space-y-3">
-                      <h4 className="text-base sm:text-lg font-semibold text-cyan-300">
+                      <h4 className="text-base sm:text-lg font-semibold text-cyan-500 dark:text-cyan-300">
                         {ach.product}
                       </h4>
                       <ul className="space-y-2 pl-2">
                         {ach.points.map((point, j) => (
                           <li
                             key={j}
-                            className="flex items-start gap-3 text-gray-300 text-sm sm:text-base"
+                            className="flex items-start gap-3 text-slate-600 dark:text-gray-300 text-sm sm:text-base"
                           >
                             <span className="text-cyan-400 mt-1.5 shrink-0">
                               ▹
@@ -580,7 +511,7 @@ function App() {
             {projects.map((project, index) => (
               <article
                 key={index}
-                className="group relative bg-slate-800/50 backdrop-blur-sm overflow-hidden border border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02]"
+                className="group relative bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02]"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -588,13 +519,13 @@ function App() {
                     alt={`${project.title} preview`}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-900 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-linear-to-t from-white dark:from-slate-900 to-transparent opacity-60" />
                 </div>
                 <div className="p-5 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 text-sm sm:text-base">
+                  <p className="text-slate-600 dark:text-gray-400 mb-4 text-sm sm:text-base">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-5">
@@ -638,43 +569,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 py-10 px-4 sm:px-6 border-t border-slate-800">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-400 mb-5">
-            Let's build something amazing together
-          </p>
-          <div className="flex gap-6 justify-center mb-6">
-            <a
-              href={developer.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
-              aria-label="GitHub profile"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-            <a
-              href={developer.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
-              aria-label="LinkedIn profile"
-            >
-              <Linkedin className="w-6 h-6" />
-            </a>
-            <a
-              href={`mailto:${developer.email}`}
-              className="text-gray-400 hover:text-cyan-400 transition-colors"
-              aria-label="Send email"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
-          </div>
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} {developer.name} • All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
