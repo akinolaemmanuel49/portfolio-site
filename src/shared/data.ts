@@ -1,6 +1,6 @@
-import type { Skill, Experience, Project } from "./types";
+import type { Skill, Experience, Project, Developer } from "./types";
 
-export const developer = {
+export const developer: Developer = {
   name: "Akinola Abiodun E.",
   description:
     "Backend-focused web developer with hands-on experience building and maintaining production services in Go and TypeScript. Strong in API design, system architecture, and debugging complex business logic. Growing expertise in AWS and cloud-native deployment, with a consistent focus on clarity, maintainability, and measurable impact.",
