@@ -13,7 +13,7 @@ export const tagline =
   "Backend-first Full-Stack Developer building clean, scalable systems for real-world use.";
 
 export const skills: Skill[] = [
-  { name: "React", level: 90, category: "Frontend" },
+  { name: "React", level: 75, category: "Frontend" },
   { name: "TypeScript", level: 85, category: "Language" },
   { name: "Node.js", level: 80, category: "Backend" },
   { name: "Python", level: 75, category: "Language" },
@@ -24,33 +24,42 @@ export const skills: Skill[] = [
 export const experiences: Experience[] = [
   {
     title: "Full Stack Web Developer",
-    company: "ReWrite Agency",
+    company: "UnboxdHQ",
     period: "February, 2025 - January, 2026",
     description:
-      "Worked across multiple products, building scalable web applications, implementing features, fixing bugs, and optimizing backend and frontend performance.",
+      "Implemented and maintained features across two core products, delivering improvements in performance and user experience.",
     achievements: [
-      {
-        product: "Zirro",
-        points: [
-          "Developed and maintained a SaaS platform to streamline business processes, from retail inventory management to client-facing storefronts.",
-          "Implemented features, fixed bugs, and optimized backend performance with a focus on concurrency in Go, improving responsiveness and efficiency.",
-          "Worked with MongoDB, Go (Fiber) backend, and React + TypeScript frontend for full-stack development.",
-        ],
-      },
       {
         product: "Weddn",
         points: [
-          "Enhanced the LoveWall with video status functionality using Cloudflare Streams, increasing user engagement.",
-          "Optimized back-office query performance, reducing processing time from 3–8 minutes to 10–50 seconds using pre-calculated documents.",
-          "Maintained full-stack development using MongoDB, Go (Fiber), and React + TypeScript.",
+          "Enhanced the LoveWall feature by implementing video status functionality using Cloudflare Streams, resulting in higher user engagement.",
+          "Optimized back-office query performance by implementing pre-calculated documents, reducing processing time from 3–8 minutes to 10–50 seconds.",
+          "Delivered full-stack development using MongoDB, Go (Fiber), and React + TypeScript.",
         ],
       },
       {
         product: "Unboxd",
         points: [
-          "Focused on bug fixing and optimizing image rendering workflows to improve frontend performance and user experience.",
-          "Ensured platform stability and smooth delivery of media content.",
-          "Worked with MongoDB, Go (Fiber) backend, and React + TypeScript frontend.",
+          "Fixed critical bugs and optimized image rendering workflows, significantly improving frontend performance and user experience.",
+          "Ensured platform stability and reliable delivery of media content.",
+          "Developed features using MongoDB, Go (Fiber) backend, and React + TypeScript frontend.",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Full Stack Web Developer",
+    company: "ZirroHQ",
+    period: "August, 2025 - January, 2026",
+    description:
+      "Implemented and maintained features for a scalable SaaS e-commerce platform, focusing on performance optimization and backend efficiency.",
+    achievements: [
+      {
+        product: "Zirro",
+        points: [
+          "Developed and maintained a comprehensive SaaS platform that streamlines business operations, from retail inventory management to client-facing storefronts.",
+          "Implemented new features, resolved bugs, and optimized backend performance with emphasis on Go concurrency, enhancing responsiveness and overall efficiency.",
+          "Built full-stack solutions using MongoDB, Go (Fiber) backend, and React + TypeScript frontend.",
         ],
       },
     ],

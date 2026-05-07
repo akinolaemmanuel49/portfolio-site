@@ -68,9 +68,7 @@ export function Experience({
                           key={j}
                           className="flex items-start gap-3 text-slate-600 dark:text-gray-300 text-sm sm:text-base"
                         >
-                          <span className="text-cyan-400 mt-1.5 shrink-0">
-                            ▹
-                          </span>
+                          <span className="text-cyan-400 shrink-0">▹</span>
                           {point}
                         </li>
                       ))}

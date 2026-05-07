@@ -82,10 +82,6 @@
         }
     }
 
-    .animate-caret-blink {
-        animation: caret-blink 1s step-end infinite;
-    }
-
     @keyframes float {
         0%,
         100% {
@@ -126,6 +122,10 @@
 
 @utility animate-float {
     animation: var(--animate-float);
+}
+
+@utility animate-caret-blink {
+    animation: caret-blink 1s step-end infinite;
 }
 
 * {
