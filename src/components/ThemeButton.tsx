@@ -46,7 +46,7 @@ export function ThemeButton({
   return (
     <button
       onClick={toggleTheme}
-      className="w-10 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center transition duration-300 shadow"
+      className="w-10 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center transition duration-300 shadow hover:cursor-pointer"
     >
       <div
         className={`w-6 h-6 relative rounded-full transition duration-500 transform p-1 text-white ${
