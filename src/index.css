@@ -70,13 +70,20 @@
         }
     }
 
-    @keyframes typewriter {
-        from: {
-            right: 0%;
+    @keyframes caret-blink {
+        0%,
+        49% {
+            opacity: 1;
         }
-        to: {
-            left: 100%;
+
+        50%,
+        100% {
+            opacity: 0;
         }
+    }
+
+    .animate-caret-blink {
+        animation: caret-blink 1s step-end infinite;
     }
 
     @keyframes float {

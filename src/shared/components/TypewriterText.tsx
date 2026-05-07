@@ -32,7 +32,16 @@ export function TypewriterText({
   return (
     <h1 className={className}>
       {displayedText}
-      <span className="animate-pulse">|</span>
+      <span
+        className="
+                ml-1
+                inline-block
+                w-0.75
+                h-[1em]
+                bg-cyan-400
+                animate-caret-blink
+              "
+      />
     </h1>
   );
 }
