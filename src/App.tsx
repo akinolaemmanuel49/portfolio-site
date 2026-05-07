@@ -63,17 +63,17 @@ function App() {
     const generateShooting = (count: number) =>
       Array.from({ length: count }, (_, i) => ({
         id: `shooting-${i}`,
-        top: 20 + Math.random() * 60,
+        top: 5 + Math.random() * 70,
         left: Math.random() * 100,
-        delay: Math.random() * 20,
-        duration: 2 + Math.random() * 3,
+        delay: i * 0,
+        duration: 1.2 + Math.random() * 1.5,
       }));
 
     return {
-      large: generateStars(20, 1, 3, 0.4),
-      medium: generateStars(40, 1.5, 4, 0.6),
-      small: generateStars(60, 0.8, 2.5, 0.8),
-      shooting: generateShooting(3),
+      large: generateStars(35, 1, 3, 0.5),
+      medium: generateStars(80, 1.5, 4, 0.7),
+      small: generateStars(140, 0.8, 2.5, 0.9),
+      shooting: generateShooting(20),
     };
   }, []);
 

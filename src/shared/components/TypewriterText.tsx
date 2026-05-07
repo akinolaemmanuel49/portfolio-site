@@ -37,7 +37,7 @@ export function TypewriterText({
                 ml-1
                 inline-block
                 w-0.75
-                h-[1em]
+                h-[0.80em]
                 bg-cyan-400
                 animate-caret-blink
               "

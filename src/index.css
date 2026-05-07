@@ -131,3 +131,12 @@
 * {
     scroll-behavior: smooth;
 }
+
+body {
+    font-family: "Inter Variable", sans-serif;
+}
+
+h1,
+h2 {
+    font-family: "Geist Mono Variable", monospace;
+}
