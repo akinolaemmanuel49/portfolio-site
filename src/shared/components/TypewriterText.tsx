@@ -1,0 +1,38 @@
+import { useEffect, useState } from "react";
+
+type TypewriterTextProps = {
+  text: string;
+  speed?: number;
+  className?: string;
+};
+
+export function TypewriterText({
+  text,
+  speed = 100,
+  className = "",
+}: TypewriterTextProps) {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      setDisplayedText(text.slice(0, currentIndex + 1));
+
+      currentIndex++;
+
+      if (currentIndex >= text.length) {
+        clearInterval(interval);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return (
+    <h1 className={className}>
+      {displayedText}
+      <span className="animate-pulse">|</span>
+    </h1>
+  );
+}

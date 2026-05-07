@@ -20,7 +20,7 @@ export function Nav({
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection("hero")}
-            className="hidden md:block text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent transition-opacity hover:opacity-80"
+            className="hidden md:block text-xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent transition-opacity hover:opacity-80 hover:cursor-pointer"
             aria-label="Go to home section"
           >
             {developer.name}
@@ -47,7 +47,7 @@ export function Nav({
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize transition-colors ${
+                className={`capitalize transition-colors hover:cursor-pointer ${
                   activeSection === section
                     ? "text-cyan-400"
                     : "text-gray-400 hover:text-slate-900 dark:hover:text-white"

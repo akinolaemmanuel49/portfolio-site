@@ -1,5 +1,6 @@
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 import type { Developer, Star } from "../shared/types";
+import { TypewriterText } from "../shared/components/TypewriterText";
 
 export function Hero({
   sectionsRef,
@@ -113,9 +114,25 @@ export function Hero({
 
       {/* Hero content */}
       <div className="relative z-20 text-center px-4 sm:px-6 animate-fade-in rounded-2xl p-6 sm:p-8 md:p-12 mx-4">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 bg-linear-to-r from-cyan-400 via-blue-500 to-teal-400 bg-clip-text text-transparent animate-slide-up">
-          {developer.name}
-        </h1>
+        <TypewriterText
+          text={developer.name}
+          speed={150}
+          className="
+            text-4xl
+            sm:text-5xl
+            md:text-6xl
+            lg:text-8xl
+            font-bold
+            mb-6
+            bg-linear-to-r
+            from-cyan-400
+            via-blue-500
+            to-teal-400
+            bg-clip-text
+            text-transparent
+            animate-slide-up
+          "
+        />
         <p
           className="max-w-4xl mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-700 dark:text-gray-300 mb-6 sm:mb-8 animate-slide-up"
           style={{ animationDelay: "0.2s" }}
