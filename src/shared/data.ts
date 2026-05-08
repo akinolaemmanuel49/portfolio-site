@@ -10,15 +10,17 @@ export const developer: Developer = {
 };
 
 export const tagline =
-  "Backend-first Full-Stack Developer building clean, scalable systems for real-world use.";
+  "Backend-first full-stack developer building clean, scalable systems for real-world use.";
 
 export const skills: Skill[] = [
-  { name: "React", level: 75, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Language" },
-  { name: "Node.js", level: 80, category: "Backend" },
-  { name: "Python", level: 75, category: "Language" },
-  { name: "Golang", level: 85, category: "Language" },
-  { name: "AWS", level: 65, category: "Cloud" },
+  { name: "React", category: "Frontend" },
+  { name: "TypeScript", category: "Language" },
+  { name: "Node.js", category: "Backend" },
+  { name: "Python", category: "Language" },
+  { name: "Golang", category: "Language" },
+  { name: "AWS", category: "Cloud" },
+  { name: "PostgreSQL", category: "Database" },
+  { name: "MongoDB", category: "Database" },
 ];
 
 export const experiences: Experience[] = [

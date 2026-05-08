@@ -4,7 +4,6 @@ import type { Skill } from "../shared/types";
 export function Skills({
   sectionsRef,
   skills,
-  activeSection,
 }: {
   sectionsRef: React.RefObject<{
     [key: string]: HTMLElement | null;
@@ -44,23 +43,6 @@ export function Skills({
                 <span className="text-xs sm:text-sm text-cyan-400 bg-cyan-400/10 px-2 sm:px-3 py-1 self-start sm:self-auto">
                   {skill.category}
                 </span>
-              </div>
-              <div className="relative h-2 sm:h-3 bg-slate-200 dark:bg-slate-700 overflow-hidden">
-                <div
-                  className="absolute top-0 left-0 h-full bg-linear-to-r from-cyan-400 to-blue-500 transition-all duration-1000 ease-out"
-                  style={{
-                    width:
-                      activeSection === "skills" ? `${skill.level}%` : "0%",
-                  }}
-                  role="progressbar"
-                  aria-valuenow={skill.level}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-label={`${skill.name} proficiency: ${skill.level}%`}
-                />
-              </div>
-              <div className="mt-2 text-right text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                {skill.level}%
               </div>
             </div>
           ))}
