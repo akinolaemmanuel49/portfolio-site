@@ -135,11 +135,7 @@ function App() {
       />
 
       {/* Skills Section */}
-      <Skills
-        sectionsRef={sectionsRef}
-        skills={skills}
-        activeSection={activeSection}
-      />
+      <Skills sectionsRef={sectionsRef} skills={skills} />
 
       {/* Experience Section */}
       <Experience sectionsRef={sectionsRef} experiences={experiences} />

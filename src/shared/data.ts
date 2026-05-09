@@ -12,14 +12,22 @@ export const developer: Developer = {
 export const tagline =
   "Backend-first full-stack developer building clean, scalable systems for real-world use.";
 
+export const categoryOrder = [
+  "Language",
+  "Frontend",
+  "Backend",
+  "Cloud",
+  "Database",
+];
+
 export const skills: Skill[] = [
-  { name: "React", category: "Frontend" },
   { name: "TypeScript", category: "Language" },
-  { name: "Node.js", category: "Backend" },
   { name: "Python", category: "Language" },
-  { name: "Golang", category: "Language" },
+  { name: "Go", category: "Language" },
+  { name: "React", category: "Frontend" },
+  { name: "Node.js", category: "Backend" },
   { name: "AWS", category: "Cloud" },
-  { name: "PostgreSQL", category: "Database" },
+  { name: "PostgresSQL", category: "Database" },
   { name: "MongoDB", category: "Database" },
 ];
 
