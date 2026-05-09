@@ -16,8 +16,10 @@ export const categoryOrder = [
   "Language",
   "Frontend",
   "Backend",
-  "Cloud",
+  "Cloud/Devops",
   "Database",
+  "Version Control",
+  "CI/CD",
 ];
 
 export const skills: Skill[] = [
@@ -25,10 +27,20 @@ export const skills: Skill[] = [
   { name: "Python", category: "Language" },
   { name: "Go", category: "Language" },
   { name: "React", category: "Frontend" },
+  { name: "Next.js", category: "Frontend" },
   { name: "Node.js", category: "Backend" },
-  { name: "AWS", category: "Cloud" },
+  { name: "AWS", category: "Cloud/Devops" },
+  { name: "Docker", category: "Cloud/Devops" },
   { name: "PostgresSQL", category: "Database" },
   { name: "MongoDB", category: "Database" },
+  { name: "FastAPI", category: "Backend" },
+  { name: "Flask", category: "Backend" },
+  { name: "Django", category: "Backend" },
+  { name: "Fiber", category: "Backend" },
+  { name: "Gin", category: "Backend" },
+  { name: "Git", category: "Version Control" },
+  { name: "GitHub", category: "Version Control" },
+  { name: "GitHub Actions", category: "CI/CD" },
 ];
 
 export const experiences: Experience[] = [
