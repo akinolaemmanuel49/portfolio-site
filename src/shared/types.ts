@@ -23,6 +23,7 @@ export type Project = {
   image: string;
   liveUrl?: string;
   githubUrl?: string;
+  demoUrl?: string;
 };
 
 export type Star = {

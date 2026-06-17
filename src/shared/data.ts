@@ -106,5 +106,6 @@ export const projects: Project[] = [
     image:
       "https://res.cloudinary.com/dikkedkzf/image/upload/v1771089909/Screenshot_61_q8mwz2.png",
     githubUrl: "https://github.com/akinolaemmanuel49/oja",
+    demoUrl: "https://youtu.be/awMucg0w7Ag",
   },
 ];

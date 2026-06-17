@@ -81,6 +81,16 @@ export function Projects({
                       <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </button>
                   )}
+                  {project.demoUrl && (
+                    <button
+                      className="flex items-center gap-2 text-cyan-400 hover:gap-3 transition-all text-sm sm:text-base cursor-pointer"
+                      aria-label={`View ${project.title} project demo`}
+                      onClick={() => window.open(project.demoUrl, "_blank")}
+                    >
+                      <span>View Demo</span>
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                  )}
                 </div>
               </div>
             </article>
