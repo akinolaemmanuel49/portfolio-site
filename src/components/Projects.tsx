@@ -75,9 +75,14 @@ export function Projects({
                     <button
                       className="flex items-center gap-2 text-cyan-400 hover:gap-3 transition-all text-sm sm:text-base cursor-pointer"
                       aria-label={`View ${project.title} project github`}
-                      onClick={() => window.open(project.githubUrl, "_blank")}
                     >
-                      <span>View Github</span>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Github
+                      </a>
                       <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </button>
                   )}
@@ -85,9 +90,14 @@ export function Projects({
                     <button
                       className="flex items-center gap-2 text-cyan-400 hover:gap-3 transition-all text-sm sm:text-base cursor-pointer"
                       aria-label={`View ${project.title} project demo`}
-                      onClick={() => window.open(project.demoUrl, "_blank")}
                     >
-                      <span>View Demo</span>
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Demo
+                      </a>
                       <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </button>
                   )}
